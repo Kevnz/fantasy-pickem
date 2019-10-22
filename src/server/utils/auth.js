@@ -16,6 +16,16 @@ function getUserIdFromContext(context) {
   throw new UnauthenticatedError()
 }
 
+function getUserIdFromRequest(request) {
+  const authorization = request.headers.authorization
+  if (authorization) {
+    const token = authorization.replace('Bearer ', '')
+    return getUserId(token)
+  }
+
+  throw new UnauthenticatedError()
+}
+
 function getToken(id) {
   return jwt.sign({ userId: id }, process.env.APP_SECRET)
 }
@@ -23,5 +33,6 @@ function getToken(id) {
 module.exports = {
   getUserId,
   getUserIdFromContext,
+  getUserIdFromRequest,
   getToken,
 }
