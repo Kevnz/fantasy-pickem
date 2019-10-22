@@ -4,17 +4,17 @@
   "build": "npx webpack --config ./src/webpack/prod.config.js --mode production",
   "predev": [
     "docker-compose -f ./docker/dev/docker-compose.yml up --detach",
-    "node ./src/scripts/delay.js"
+    "node ./src/scripts/delay.js",
+    "npx knex migrate:latest"
   ],
   "dev": [
     "nodemon ./src/server/index.js",
     "npx webpack-dev-server --config ./src/webpack/dev.config.js --mode development"
   ],
-  "postdev": [
+  "cleanupdev": [
     "docker-compose -f ./docker/dev/docker-compose.yml down"
   ],
   "docker:up": "docker-compose -f ./docker/dev/docker-compose.yml up",
   "docker:down": "docker-compose -f ./docker/dev/docker-compose.yml down",
-  "storybook": "npx tart-storybook -p 6006",
-  "build-storybook": "npx build-storybook"
+  "seed": "npx knex seed:run"
 }
