@@ -1,0 +1,122 @@
+scalar Date
+scalar DateTime
+scalar Time
+
+type User {
+  firstName: String
+  lastName: String
+  username: String
+  email: String
+}
+
+type League {
+  id: ID
+  title: String
+  weeks: String
+  startDate: DateTime
+  endDate: DateTime
+  description: String
+  sport: String
+}
+
+type Team {
+  id: ID
+  name: String
+  league: League
+  location: String
+}
+
+type Matchup {
+  id: ID
+  week: Int
+  teamA: Team
+  teamB: Team
+  winner: Team
+  teamAScore: Int
+  teamBScore: Int
+  matchupStart: DateTime
+}
+
+type Pick {
+  matchup: Matchup
+  user: User
+  pick: Team
+  final: Boolean
+}
+
+type LeagueList {
+  leagues: [League]
+  total: Int!
+}
+
+type PickList {
+  picks: [Pick]
+  total: Int!
+}
+
+type MatchupList {
+  matchups: [Pick]
+  total: Int!
+}
+
+type MutationResult {
+  success: Boolean
+  message: String
+}
+
+type Query {
+  user: User
+  getUser(id: ID): User
+  getUsers(skip: Int): UserList
+  getLeague(id: ID): League
+  getLeagues(skip: Int): LeagueList
+  getPick(id: ID): Pick
+  getPicks(skip: Int): PickList
+  getMatchup(id: ID): Matchup
+  getMatchups(skip: Int): MatchupList
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+input NewUserInput {
+  firstName: String!
+  lastName: String!
+  email: String!
+  username: String!
+  password: String!
+  avatar: String
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input MakePickInput {
+  matchupId: Int
+  pickedTeamId: Int
+}
+
+input JoinLeagueInput {
+  leagueId: Int
+}
+
+type Mutation {
+
+  signup(
+    newUserInput: NewUserInput!
+  ): AuthPayload!
+
+  login(loginInput: LoginInput!): AuthPayload!
+
+  makePick(makePickInput: MakePickInput!): {
+    pick: Pick
+    result: MutationResult
+  }
+
+  joinLeague(leagueId: Int): MutationResult!
+
+}
