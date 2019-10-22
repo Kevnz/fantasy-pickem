@@ -3,9 +3,9 @@
   "database": {
     "client": "pg",
     "connection": {
-      "database": "dbuser",
-      "user": "dbuser",
-      "password": "dbpassword_password"
+      "database": "pickem",
+      "user": "pickem",
+      "password": "pickem_password"
     },
     "pool": {
       "min": 2,
