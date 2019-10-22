@@ -7,6 +7,9 @@ module.exports = bookshelf.model(
     tableName: 'users',
     idAttribute: 'id',
     hidden: ['password'],
+    picks: function() {
+      return this.hasMany('Pick', 'userId')
+    },
   },
   {
     login: async function(email, password) {
@@ -25,7 +28,13 @@ module.exports = bookshelf.model(
             })
         })
     },
-    register: async function({ firstName, lastName, email, password }) {
+    register: async function({
+      firstName,
+      lastName,
+      email,
+      username,
+      password,
+    }) {
       const saltRounds = 10
       const salt = bcrypt.genSaltSync(saltRounds)
       const hashedPassword = await bcrypt.hashSync(password, salt)
@@ -33,6 +42,7 @@ module.exports = bookshelf.model(
         firstName,
         lastName,
         email,
+        username,
         password: hashedPassword,
       }).save()
     },
