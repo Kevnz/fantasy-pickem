@@ -14,12 +14,12 @@ export default () => {
         <Hero>
           <HeroBody>
             <Title>Fantasy Pickem</Title>
-            <SubTitle>Play the games</SubTitle>
+            <SubTitle>Matchup</SubTitle>
           </HeroBody>
         </Hero>
       </Section>
       <Section>
-        <Content>Home page</Content>
+        <Content>Matchup page</Content>
       </Section>
     </>
   )
