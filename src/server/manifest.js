@@ -12,7 +12,7 @@ module.exports = [
     plugin: require('@hapi/good'),
     options: {
       ops: {
-        interval: 30 * 200,
+        interval: 30 * 800,
       },
       reporters: {
         console: [
