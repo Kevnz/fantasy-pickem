@@ -25,7 +25,7 @@
     "@reach/router": "^1.2.1",
     "apollo-server-hapi": "^2.9.4",
     "back-off": "^4.2.0",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "blipp": "^4.0.1",
     "bookshelf": "^1.0.0",
     "classnames": "^2.2.6",
