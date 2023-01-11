@@ -32,7 +32,7 @@
     "creature-features": "^5.0.0",
     "graphql": "^14.5.8",
     "hapi-router": "^5.0.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "knex": "^0.19.4",
     "pg": "^7.12.1",
     "react": "^16.10.1",
